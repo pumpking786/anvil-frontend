@@ -1,0 +1,271 @@
+/* One restrained motion system. Never animate printed documents or form geometry. */
+:root {
+  --motion-fast: 160ms;
+  --motion-normal: 260ms;
+  --motion-enter: 420ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes surface-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes dialog-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes veil-arrive {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes chart-reveal {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes login-artwork-drift {
+  from {
+    transform: translateY(6px) rotate(-3deg);
+  }
+  to {
+    transform: translateY(-6px) rotate(3deg);
+  }
+}
+@keyframes login-ribbon-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media screen and (prefers-reduced-motion: no-preference) {
+  :is(
+    .button,
+    .icon-button,
+    .sidebar nav :is(button, a),
+    .customer-card,
+    .product-card,
+    .lead-card,
+    .account-menu-trigger,
+    .view-switcher button,
+    .dashboard-directory-links button
+  ) {
+    transition:
+      background-color var(--motion-fast) ease,
+      color var(--motion-fast) ease,
+      border-color var(--motion-fast) ease,
+      box-shadow var(--motion-normal) ease,
+      transform var(--motion-normal) var(--ease-out);
+  }
+  :is(.collection-table, .quotes-table, .dashboard-recent-table) tbody tr {
+    transition: background-color var(--motion-fast) ease;
+  }
+  :is(.button.primary, .login-submit) > svg:last-child {
+    transition: transform var(--motion-normal) var(--ease-out);
+  }
+  .login-submit:hover:not(:disabled) > svg:last-child {
+    transform: translateX(3px);
+  }
+  .theme-toggle > svg {
+    transition: transform 400ms var(--ease-out);
+  }
+  .theme-toggle:hover > svg {
+    transform: rotate(18deg);
+  }
+  .main-content {
+    animation: surface-arrive var(--motion-enter) var(--ease-out);
+  }
+  :is(.dashboard-metrics, .business-metrics, .crm-metrics) > article {
+    animation: surface-arrive 480ms var(--ease-out) backwards;
+  }
+  :is(.dashboard-metrics, .business-metrics, .crm-metrics) > article:nth-child(2) {
+    animation-delay: 45ms;
+  }
+  :is(.dashboard-metrics, .business-metrics, .crm-metrics) > article:nth-child(3) {
+    animation-delay: 90ms;
+  }
+  :is(.dashboard-metrics, .business-metrics, .crm-metrics) > article:nth-child(4) {
+    animation-delay: 135ms;
+  }
+  .dashboard-charts > .panel {
+    animation: surface-arrive 500ms var(--ease-out) 100ms backwards;
+  }
+  .sales-chart .chart-series {
+    stroke-dasharray: 1;
+    animation: chart-reveal 900ms var(--ease-out) 160ms backwards;
+  }
+  .sales-chart .chart-area {
+    animation: veil-arrive 700ms ease 200ms backwards;
+  }
+  .modal-backdrop {
+    animation: veil-arrive 180ms ease-out;
+  }
+  .modal {
+    animation: dialog-arrive 280ms var(--ease-out);
+  }
+  .product-search-results {
+    animation: surface-arrive 200ms var(--ease-out);
+  }
+  .account-popover.is-open {
+    animation-duration: 240ms;
+    animation-timing-function: var(--ease-out);
+  }
+  .login:not(.is-preview) .login-card-layout {
+    animation: dialog-arrive 600ms var(--ease-out);
+  }
+  .login:not(.is-preview) :is(.login-company-logo, .login-brand-fallback) {
+    animation: surface-arrive 550ms var(--ease-out) 70ms backwards;
+  }
+  .login:not(.is-preview) .login-form-wrap > h2 {
+    animation: surface-arrive 500ms var(--ease-out) 110ms backwards;
+  }
+  .login:not(.is-preview) .login-description {
+    animation: surface-arrive 500ms var(--ease-out) 150ms backwards;
+  }
+  .login:not(.is-preview) .login-form-wrap > form {
+    animation: surface-arrive 500ms var(--ease-out) 190ms backwards;
+  }
+  .login:not(.is-preview) .login-security-footer {
+    animation: surface-arrive 500ms var(--ease-out) 230ms backwards;
+  }
+  .login:not(.is-preview) .login-bottom {
+    animation: veil-arrive 600ms ease 300ms backwards;
+  }
+  .login:not(.is-preview) .login-artwork {
+    animation: login-artwork-drift 12s ease-in-out 4 alternate;
+  }
+  .login:not(.is-preview) .login-artwork-ribbons {
+    animation: login-ribbon-reveal 1100ms var(--ease-out) 180ms backwards;
+  }
+  .login :is(input, .login-preview-input),
+  .auth-dialog input {
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      box-shadow 220ms ease;
+  }
+  .auth-dialog .two-factor-enrollment {
+    animation: dialog-arrive 380ms var(--ease-out) 60ms backwards;
+  }
+  :is(.customer-grid, .product-grid) > * {
+    animation: surface-arrive 420ms var(--ease-out) backwards;
+  }
+  :is(.customer-grid, .product-grid) > :nth-child(2) {
+    animation-delay: 40ms;
+  }
+  :is(.customer-grid, .product-grid) > :nth-child(3) {
+    animation-delay: 80ms;
+  }
+  :is(.customer-grid, .product-grid) > :nth-child(4) {
+    animation-delay: 120ms;
+  }
+  .settings-tabs button,
+  .crm-record-tabs button,
+  .crm-view-switch button,
+  .stage-summary {
+    transition:
+      background-color 180ms ease,
+      color 180ms ease,
+      border-color 180ms ease,
+      box-shadow 220ms ease;
+  }
+  .collection-table-wrap,
+  .list-toolbar,
+  .business-toolbar {
+    animation: surface-arrive 400ms var(--ease-out) 70ms backwards;
+  }
+  /* Short-lived class set only during an appearance change, not on initial load. */
+  .theme-changing,
+  .theme-changing
+    :is(
+      body,
+      .sidebar,
+      .topbar,
+      .main-content,
+      .panel,
+      .modal,
+      .login,
+      .login-form-wrap,
+      .login-brand-panel,
+      .master-console,
+      .master-console-header,
+      .account-popover,
+      .product-card,
+      .customer-card,
+      .profile-panel,
+      .profile-summary
+    ) {
+    transition:
+      background-color 240ms ease,
+      color 240ms ease,
+      border-color 240ms ease,
+      box-shadow 240ms ease;
+  }
+}
+@media screen and (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .button.primary:hover:not(:disabled) {
+    transform: translateY(-1px);
+  }
+  .button.primary:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  :root[data-theme='light'] :is(.customer-card, .product-card, .lead-card):hover {
+    box-shadow: 0 10px 30px #1a436214;
+  }
+  :is(.customer-card, .product-card, .lead-card):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px #0812221f;
+    border-color: color-mix(in srgb, var(--accent) 38%, var(--line));
+  }
+  :root[data-theme='dark'] :is(.customer-card, .product-card, .lead-card):hover {
+    box-shadow: 0 10px 28px #00000045;
+  }
+  .sidebar nav :is(button, a):not(.active):hover:not(:disabled) > svg {
+    transform: translateX(2px);
+  }
+  .sidebar nav :is(button, a) > svg {
+    transition: transform var(--motion-normal) var(--ease-out);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .sales-chart .chart-series {
+    stroke-dasharray: none;
+  }
+}
+@media print {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

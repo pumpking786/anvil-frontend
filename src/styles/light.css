@@ -1,0 +1,201 @@
+/* Porcelain surfaces and blue accents, scoped away from documents and dark mode. */
+@media screen {
+  :root[data-theme='light'] {
+    --ink: #192c43;
+    --muted: #62748a;
+    --line: #e0e7f0;
+    --surface: #ffffff;
+    --canvas: #f5f7fb;
+    --surface-raised: #ffffff;
+    --surface-inset: #f7f9fc;
+    --line-strong: #b4c7df;
+    --focus-ring: #3073c6;
+    --shadow: 0 4px 18px #233e6206, 0 1px 3px #233e6204;
+    --ui-surface: #ffffff;
+    --ui-soft: #f5f7fb;
+    --ui-soft-blue: #edf4ff;
+    --ui-soft-green: #edf8f3;
+    --ui-soft-warm: #fff8ed;
+    --ui-ink: #192c43;
+    --ui-muted: #62748a;
+    --ui-line: #e0e7f0;
+    --ui-link: #205caa;
+    --ui-success: #247454;
+    --ui-danger: #b83c40;
+    --chart-grid: #e8edf4;
+    --chart-issued: #397cc9;
+    --chart-accepted: #319b82;
+    --chart-area: #397cc90b;
+    background: var(--canvas);
+    color: var(--ink);
+  }
+  :root[data-theme='light'] body {
+    background: var(--canvas);
+  }
+  :root[data-theme='light'] ::selection {
+    background: #d7e8ff;
+    color: #173e6e;
+  }
+  :root[data-theme='light'] .sidebar {
+    background: linear-gradient(175deg, #fff 0%, #f8faff 100%);
+    border-right-color: var(--line);
+  }
+  :root[data-theme='light'] :is(.topbar, .master-console-header) {
+    background: #ffffffed;
+    backdrop-filter: blur(16px);
+    border-bottom-color: var(--line);
+  }
+  :root[data-theme='light'] .sidebar nav :is(button, a) {
+    color: #5c6e85;
+    border-radius: 9px;
+  }
+  :root[data-theme='light'] .sidebar nav :is(button, a):hover:not(:disabled) {
+    background: #edf3fb;
+    color: #224c7c;
+  }
+  :root[data-theme='light'] .sidebar nav :is(button, a).active {
+    background: linear-gradient(100deg, #e8f1ff, #f1f6ff);
+    color: #1c5393;
+    box-shadow: 0 0 0 1px #d9e6f7 inset;
+  }
+  :root[data-theme='light'] .sidebar nav :is(button, a).active::before {
+    left: 0;
+    top: 11px;
+    bottom: 11px;
+    width: 3px;
+    border-radius: 4px;
+    background: #397cc9;
+  }
+  :root[data-theme='light'] .sidebar nav :is(button, a) > span:last-child:not(:only-child) {
+    background: #eaf0f7;
+    color: #637992;
+  }
+  :root[data-theme='light'] .sidebar nav :is(button, a).active > span {
+    background: #d8e7fb;
+    color: #205caa;
+  }
+  :root[data-theme='light']
+    :is(
+      .panel,
+      .product-card,
+      .customer-card,
+      .profile-panel,
+      .profile-summary,
+      .owner-accounts-panel,
+      .owner-connection-card,
+      .collection-table-wrap,
+      .list-toolbar,
+      .crm-toolbar,
+      .business-metrics > article
+    ) {
+    border-color: var(--line);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    background-color: var(--surface);
+  }
+  :root[data-theme='light'] :is(.page-heading, .dashboard-heading) h1 {
+    color: #172d47;
+    letter-spacing: -0.045em;
+    font-weight: 650;
+  }
+  :root[data-theme='light'] .eyebrow {
+    color: #71859e;
+  }
+  :root[data-theme='light'] :is(.customer-card h3, .product-card h2) {
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 650;
+    line-height: 1.4;
+    letter-spacing: -0.025em;
+  }
+  :root[data-theme='light'] :is(.button, .icon-button, .view-switcher) {
+    border-radius: 9px;
+  }
+  :root[data-theme='light'] .button.primary {
+    background: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 80%, #16395d);
+    box-shadow:
+      0 2px 4px #173b6015,
+      0 1px 0 #ffffff26 inset;
+  }
+  :root[data-theme='light'] .button.primary:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--accent) 87%, #1b62a8);
+    box-shadow: 0 5px 14px color-mix(in srgb, var(--accent) 19%, transparent);
+  }
+  :root[data-theme='light'] .button:not(.primary):hover:not(:disabled) {
+    border-color: var(--line-strong);
+    background: #f3f7fd;
+  }
+  :root[data-theme='light'] :is(input, select, textarea) {
+    border-color: #d7e1ed;
+    border-radius: 9px;
+    background-color: #fff;
+  }
+  :root[data-theme='light'] :is(input, textarea)::placeholder {
+    color: #8492a5;
+    opacity: 1;
+  }
+  :root[data-theme='light'] :is(input, select, textarea):focus {
+    border-color: #5b8fcf;
+    box-shadow: 0 0 0 3px #397cc914;
+  }
+  :root[data-theme='light'] :is(button, a, summary):focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
+  }
+  :root[data-theme='light'] :is(.collection-table th, .quotes-table th, .modal-actions) {
+    background: #f8fafe;
+  }
+  :root[data-theme='light']
+    :is(.collection-table, .quotes-table, .dashboard-recent-table)
+    tbody
+    tr:hover {
+    background: #f3f7fd;
+  }
+  :root[data-theme='light'] :is(.modal, .account-popover, .product-search-results) {
+    border: 1px solid #dbe5f1;
+    box-shadow:
+      0 24px 72px #183d6124,
+      0 4px 12px #183d6108;
+  }
+  :root[data-theme='light'] .modal-backdrop {
+    background: #132e4c45;
+    backdrop-filter: blur(6px);
+  }
+  :root[data-theme='light'] .dashboard-metrics article {
+    border-radius: 14px;
+    background: linear-gradient(125deg, var(--metric-bg), #fff 120%);
+    border-color: var(--metric-line);
+    box-shadow: var(--shadow);
+  }
+  :root[data-theme='light'] .dashboard-metrics article > strong {
+    color: #20354e;
+    letter-spacing: -0.04em;
+  }
+  :root[data-theme='light'] .dashboard-metrics :is(p, strong small) {
+    color: #61758b;
+  }
+  :root[data-theme='light'] .dashboard-donut {
+    box-shadow: 0 0 0 6px #f6f9fd;
+  }
+  :root[data-theme='light'] .crm-column {
+    background: #eef3f9;
+    border-color: #e0e8f2;
+    border-radius: 12px;
+  }
+  :root[data-theme='light'] .crm-page .lead-card {
+    border-radius: 10px;
+    box-shadow: 0 2px 5px #183d6108;
+  }
+  :root[data-theme='light'] .crm-metrics article {
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+  }
+  :root[data-theme='light'] .stage-summary.selected {
+    border-color: #7ea8dc;
+    box-shadow: 0 0 0 2px #397cc90c;
+  }
+  :root[data-theme='light'] :is(.status, .category, .product-topic) {
+    box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 9%, transparent) inset;
+  }
+}

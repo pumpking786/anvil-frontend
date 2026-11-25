@@ -1,0 +1,446 @@
+/* Screen appearance tokens and components. Document/PDF palettes stay independent. */
+:root {
+  color-scheme: light;
+}
+@media screen {
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --ink: #e7edf7;
+    --muted: #9caec5;
+    --line: #29384c;
+    --surface: #141e2d;
+    --canvas: #0c121d;
+    --accent: #8bb9ff;
+    --accent-ink: #0b1d33;
+    --accent-readable: #a5caff;
+    --danger: #ffaaa4;
+    --shadow: 0 4px 18px #00000026, 0 1px 0 #ffffff04 inset;
+    --surface-raised: #1a2739;
+    --surface-inset: #101a29;
+    --line-strong: #405779;
+    --focus-ring: #8bb9ff;
+    --chart-grid: #29384c;
+    --chart-issued: #79adff;
+    --chart-accepted: #67d3af;
+    --chart-area: #5b9fff13;
+    --chart-valid: #75c7d7;
+    --chart-cancelled: #ef94aa;
+    --chart-draft: #9aa9be;
+    --chart-expired: #e6bd74;
+    --ui-surface: #141e2d;
+    --ui-soft: #1b293c;
+    --ui-soft-blue: #1a3453;
+    --ui-soft-green: #16372f;
+    --ui-soft-warm: #3c3023;
+    --ui-ink: #e7edf7;
+    --ui-muted: #9caec5;
+    --ui-line: #29384c;
+    --ui-link: #a5caff;
+    --ui-success: #83ddba;
+    --ui-danger: #ffaaa4;
+    color: var(--ink);
+    background: var(--canvas);
+  }
+  :root[data-theme='dark'] :is(.app-shell, .master-console, .login, .auth-dialog) {
+    --accent: #8bb9ff !important;
+    --accent-ink: #0b1d33 !important;
+    --accent-readable: #a5caff !important;
+  }
+  :root[data-theme='dark'] .dashboard-metrics .metric-sales {
+    --metric-bg: #14382f;
+    --metric-line: #285549;
+    --metric-ink: #8ae6bd;
+    --metric-icon: #205044;
+  }
+  :root[data-theme='dark'] .dashboard-metrics .metric-value {
+    --metric-bg: #19334f;
+    --metric-line: #2b5074;
+    --metric-ink: #a3cfff;
+    --metric-icon: #254a6d;
+  }
+  :root[data-theme='dark'] .dashboard-metrics .metric-open {
+    --metric-bg: #3c3020;
+    --metric-line: #675035;
+    --metric-ink: #f3cf85;
+    --metric-icon: #544129;
+  }
+  :root[data-theme='dark'] .dashboard-metrics .metric-win {
+    --metric-bg: #39283d;
+    --metric-line: #60415e;
+    --metric-ink: #edb0d2;
+    --metric-icon: #51364e;
+  }
+  :root[data-theme='dark'] .sidebar nav :is(button, a) > span:last-child:not(:only-child) {
+    background-color: var(--ui-soft);
+    color: var(--muted);
+  }
+  :root[data-theme='dark'] body {
+    background: var(--canvas);
+  }
+  :root[data-theme='dark'] :is(input, select, textarea) {
+    border-color: var(--line);
+    color: var(--ink);
+    background-color: var(--surface);
+  }
+  :root[data-theme='dark'] :is(.line-product-title, .line-sales-description) {
+    color: var(--ink) !important;
+  }
+  :root[data-theme='dark'] .line-sales-description {
+    color: var(--muted) !important;
+  }
+  :root[data-theme='dark']
+    :is(
+      .login-form-wrap,
+      .login-dialog,
+      .auth-dialog,
+      .modal,
+      .topbar,
+      .sidebar,
+      .master-console-header,
+      .account-popover
+    ) {
+    background-color: var(--surface);
+    color: var(--ink);
+  }
+  :root[data-theme='dark'] .login-form-side {
+    background-color: transparent;
+  }
+  :root[data-theme='dark'] .login {
+    background-color: var(--canvas) !important;
+  }
+  :root[data-theme='dark'] .login-bottom {
+    color: #d7e5f7;
+  }
+  :root[data-theme='dark'] .login-brand-panel {
+    color: #e9f3ff;
+  }
+  :root[data-theme='dark'] .theme-logo {
+    background-color: transparent;
+  }
+  :root[data-theme='dark']
+    :is(.brand-long, .master-console-brand strong, .master-console-brand span) {
+    color: #f1f6ff !important;
+  }
+}
+
+@media screen {
+  :root[data-theme='dark'] {
+    scrollbar-color: #425574 var(--canvas);
+  }
+  :root[data-theme='dark'] ::selection {
+    background: #3464a7;
+    color: #fff;
+  }
+  :root[data-theme='dark'] .sidebar {
+    background: #101925;
+    border-right-color: #243247;
+  }
+  :root[data-theme='dark'] :is(.topbar, .master-console-header) {
+    background: #111b29ed;
+    backdrop-filter: blur(16px);
+    border-bottom-color: #263449;
+  }
+  :root[data-theme='dark']
+    :is(
+      .panel,
+      .product-card,
+      .customer-card,
+      .profile-panel,
+      .profile-summary,
+      .owner-accounts-panel,
+      .owner-connection-card,
+      .collection-table-wrap
+    ) {
+    border-color: var(--line);
+    box-shadow: var(--shadow);
+    border-radius: 14px;
+  }
+  :root[data-theme='dark'] :is(.panel-heading, .modal-heading) {
+    border-bottom-color: var(--line);
+  }
+  :root[data-theme='dark'] :is(.modal-actions, .collection-table th, .quotes-table th) {
+    background: var(--surface-inset);
+  }
+  :root[data-theme='dark'] :is(.modal, .account-popover, .product-search-results) {
+    background: var(--surface-raised);
+    border: 1px solid #384b66;
+    box-shadow:
+      0 24px 80px #00000070,
+      0 1px 0 #ffffff09 inset;
+  }
+  :root[data-theme='dark'] .modal-backdrop {
+    background: #020812b5;
+    backdrop-filter: blur(7px);
+  }
+  :root[data-theme='dark'] .modal-heading h2 {
+    color: #f1f5fc;
+  }
+  :root[data-theme='dark'] .sidebar nav :is(button, a) {
+    border-radius: 9px;
+    color: #a7b7cc;
+  }
+  :root[data-theme='dark'] .sidebar nav :is(button, a):hover:not(:disabled) {
+    background: #1b2a3d;
+    color: #f1f6ff;
+  }
+  :root[data-theme='dark'] .sidebar nav :is(button, a).active {
+    color: #b4d3ff;
+    background: linear-gradient(100deg, #21436c99, #1a2c4240);
+    box-shadow: 0 0 0 1px #41648b5c inset;
+  }
+  :root[data-theme='dark'] .sidebar nav :is(button, a).active::before {
+    left: 0;
+    top: 11px;
+    bottom: 11px;
+    width: 3px;
+    border-radius: 3px;
+    background: #81b4ff;
+    box-shadow: 0 0 12px #5c9fff50;
+  }
+  :root[data-theme='dark'] .sidebar nav :is(button, a).active > span {
+    background: #2a466b !important;
+    color: #d9e8ff !important;
+  }
+  :root[data-theme='dark'] :is(.sidebar-account .avatar, .company-switcher-control) {
+    background: var(--surface-raised);
+  }
+  :root[data-theme='dark'] :is(.button, .icon-button, .view-switcher) {
+    border-radius: 9px;
+  }
+  :root[data-theme='dark'] .button.primary {
+    color: #fff;
+    background: #2868ce;
+    border-color: #4987e5;
+    box-shadow:
+      0 2px 5px #00000026,
+      0 1px 0 #ffffff18 inset;
+  }
+  :root[data-theme='dark'] .button.primary:hover:not(:disabled) {
+    background: #3374d9;
+    border-color: #77a6f0;
+    box-shadow: 0 5px 18px #1757af36;
+  }
+  :root[data-theme='dark'] .button:not(.primary):hover:not(:disabled) {
+    border-color: var(--line-strong);
+    background: #22334a;
+  }
+  :root[data-theme='dark'] :is(.text-button, .collection-name:hover) {
+    color: var(--ui-link);
+  }
+  :root[data-theme='dark'] :is(input, textarea, select) {
+    background-color: var(--surface-inset);
+    border-color: #35465e;
+    border-radius: 9px;
+  }
+  :root[data-theme='dark'] :is(input, textarea)::placeholder {
+    color: #8195b0;
+    opacity: 1;
+  }
+  :root[data-theme='dark'] :is(input, textarea, select):focus {
+    border-color: #7daaff;
+    box-shadow: 0 0 0 3px #5b9fff24;
+  }
+  :root[data-theme='dark'] :is(button, a, summary):focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
+  }
+  :root[data-theme='dark'] input:-webkit-autofill {
+    -webkit-text-fill-color: var(--ink);
+    box-shadow: 0 0 0 1000px var(--surface-inset) inset;
+    caret-color: var(--ink);
+  }
+  :root[data-theme='dark'] :is(.search-field, .product-search-input):focus-within {
+    border-color: #7daaff;
+    box-shadow: 0 0 0 3px #5b9fff24;
+  }
+  :root[data-theme='dark'] .search-field input {
+    background: transparent;
+  }
+  :root[data-theme='dark']
+    :is(.collection-table, .quotes-table, .dashboard-recent-table)
+    tbody
+    tr:hover {
+    background: #7faeff0a;
+  }
+  :root[data-theme='dark'] :is(.status, .category, .product-topic) {
+    box-shadow: 0 0 0 1px currentColor inset;
+  }
+  :root[data-theme='dark'] :is(.status-valid, .category-enterprise) {
+    color: #9ed6ea;
+    background: #173848;
+  }
+  :root[data-theme='dark'] :is(.status-accepted, .category-banking) {
+    color: #91dfbf;
+    background: #17382f;
+  }
+  :root[data-theme='dark'] :is(.status-sent, .category-government) {
+    color: #a9ccff;
+    background: #1c3658;
+  }
+  :root[data-theme='dark']
+    :is(.status-expired, .category-insurance, .email-delivery-status.uncertain) {
+    color: #ebcb8e;
+    background: #3c3020;
+  }
+  :root[data-theme='dark'] :is(.status-cancelled, .account-menu-logout:hover) {
+    color: #ffb4be;
+    background: #3c2531;
+  }
+  :root[data-theme='dark'] .status-draft {
+    color: #bdc9db;
+    background: #273548;
+  }
+  :root[data-theme='dark'] .dashboard-metrics article {
+    background: linear-gradient(
+      125deg,
+      color-mix(in srgb, var(--metric-bg) 72%, var(--surface)),
+      var(--surface)
+    );
+    border-color: color-mix(in srgb, var(--metric-line) 70%, var(--line));
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+  }
+  :root[data-theme='dark'] .dashboard-metrics :is(p, strong small) {
+    color: #adbed3;
+  }
+  :root[data-theme='dark'] .dashboard-metrics article > strong {
+    color: #f0f5fd;
+    letter-spacing: -0.035em;
+  }
+  :root[data-theme='dark'] .sales-chart text {
+    fill: #a1b3cb;
+  }
+  :root[data-theme='dark'] .sales-chart rect:focus-visible {
+    outline-color: var(--focus-ring);
+  }
+  :root[data-theme='dark'] .dashboard-stage-list b {
+    background: #77aaff;
+    border-radius: inherit;
+  }
+  :root[data-theme='dark'] .dashboard-donut {
+    box-shadow:
+      0 0 0 6px #ffffff03,
+      0 6px 24px #00000024;
+  }
+  :root[data-theme='dark'] .crm-column {
+    background: #111b2a;
+    border-color: var(--line);
+    border-radius: 12px;
+  }
+  :root[data-theme='dark'] .lead-card {
+    background: var(--surface-raised);
+    border-color: #31425b;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #00000020;
+  }
+  :root[data-theme='dark'] .summary-card {
+    background: var(--surface);
+    border-color: var(--line);
+    box-shadow: var(--shadow);
+  }
+  :root[data-theme='dark'] .document-preview-shell {
+    background: #080e18;
+    border-color: var(--line);
+  }
+  :root[data-theme='dark'] .login-card-layout {
+    border-color: #35465f;
+    box-shadow:
+      0 26px 70px #00000048,
+      0 1px 0 #ffffff0d inset;
+  }
+  :root[data-theme='dark'] .login-form-wrap {
+    background: linear-gradient(145deg, #192638, #131d2c);
+  }
+  :root[data-theme='dark'] .login-brand-panel {
+    background: linear-gradient(155deg, #193759, #101f33);
+  }
+  :root[data-theme='dark'] .login-bottom > span {
+    color: #a9bdd6;
+  }
+  :root[data-theme='dark'] :is(.welcome-notice, .toast) {
+    color: #e9f2ff;
+    background: #1a2b40;
+    border: 1px solid #47658b;
+    box-shadow: 0 16px 50px #0000004d;
+  }
+  :root[data-theme='dark'] .welcome-symbol {
+    background: #274971;
+    color: #bad8ff;
+  }
+  :root[data-theme='dark'] .theme-toggle {
+    color: #b6d3ff;
+  }
+}
+
+/* Keep dialog controls reachable on shorter desktop and tablet screens. */
+@media screen {
+  .modal:not(.auth-dialog) > .modal-heading {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: var(--surface);
+  }
+  .modal:not(.auth-dialog) .modal-actions {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    box-shadow: 0 -6px 18px #101c2b08;
+  }
+  :root[data-theme='dark'] .modal:not(.auth-dialog) > .modal-heading {
+    background: var(--surface-raised);
+  }
+  :root[data-theme='dark'] .modal:not(.auth-dialog) .modal-actions {
+    box-shadow: 0 -6px 20px #00000026;
+  }
+}
+
+@media screen {
+  .collection-table[aria-label='Customers'] {
+    min-width: 1080px;
+  }
+  .collection-table[aria-label='Customers'] :is(th, td):not(:first-child) {
+    white-space: nowrap;
+  }
+  .collection-table[aria-label='Customers'] .customer-name {
+    min-width: 180px;
+  }
+  .category,
+  .status,
+  .product-topic {
+    white-space: nowrap;
+  }
+  :root[data-theme='dark'] :is(.status, .category, .product-topic) {
+    box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 22%, transparent) inset;
+  }
+  .collection-table-wrap {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
+  }
+}
+
+@media screen {
+  :root[data-theme='dark'] :is(.business-metrics, .crm-metrics) > article {
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+  }
+  :root[data-theme='dark'] .crm-metrics article:nth-child(2),
+  :root[data-theme='dark'] .crm-metrics article:nth-child(3) {
+    background: linear-gradient(125deg, #1c3553, var(--surface));
+  }
+  :root[data-theme='dark'] .crm-metrics article:nth-child(4) {
+    background: linear-gradient(125deg, #352d22, var(--surface));
+  }
+  :root[data-theme='dark'] .stage-won {
+    color: #91dfbf;
+  }
+  :root[data-theme='dark'] .stage-proposal {
+    color: #ebcb8e;
+  }
+  :root[data-theme='dark'] .stage-lost {
+    color: #efafba;
+  }
+  :root[data-theme='dark'] .stage-summary.selected {
+    border-color: #7daaff;
+    box-shadow: 0 0 0 2px #5b9fff22;
+  }
+}

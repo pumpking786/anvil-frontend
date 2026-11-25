@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Anvil Technologies Customer Lifecycle Platform · API connection guide</title>
+    <style>
+      body {
+        font:
+          15px/1.75 system-ui,
+          sans-serif;
+        background: #f4f7fb;
+        color: #263748;
+        max-width: 760px;
+        margin: 60px auto;
+        padding: 0 25px;
+      }
+      h1 {
+        font-family: Georgia, serif;
+        font-size: 40px;
+        font-weight: 400;
+        line-height: 1.2;
+      }
+      h2 {
+        font-size: 20px;
+        margin-top: 35px;
+      }
+      code,
+      pre {
+        background: #e8f0f9;
+        border-radius: 5px;
+        font-size: 13px;
+      }
+      code {
+        padding: 3px 6px;
+      }
+      pre {
+        padding: 18px;
+        overflow: auto;
+      }
+      a {
+        color: #174a78;
+      }
+      li {
+        margin: 10px 0;
+      }
+      .tag {
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: #526d86;
+      }
+      footer {
+        margin: 40px 0;
+        border-top: 1px solid #dce5ee;
+        padding: 20px 0;
+        font-size: 12px;
+        color: #66788b;
+      }
+    </style>
+  </head>
+  <body>
+    <span class="tag">ANVIL TECHNOLOGIES · CONNECTION GUIDE</span>
+    <h1>Your workspace.<br />Your backend.</h1>
+    <p>
+      The included Node.js server provides a JWT-authenticated SQLite API. The app runs locally
+      without it; connecting an API enables shared records across devices.
+    </p>
+    <h2>1. Start the reference server</h2>
+    <p>Install dependencies and build the app from the project folder, then enable the API:</p>
+    <pre>
+pnpm install --frozen-lockfile
+pnpm build
+pnpm api:enable
+pnpm start</pre>
+    <p>
+      The setup command creates a private <code>.env</code> and
+      <code>data/api-connection.json</code>. Keep the connection file private; it contains your
+      first-time server setup key.
+    </p>
+    <h2>2. Connect in the app</h2>
+    <ol>
+      <li>Go to <strong>Data & connection</strong>.</li>
+      <li>
+        Choose <strong>Import API connection file</strong> and select
+        <code>data/api-connection.json</code>, or enter your API URL and setup key manually. Enter a
+        server password to create the first super admin; later connections use your server password.
+      </li>
+      <li>Select <strong>Test connection</strong>.</li>
+      <li>
+        Optionally initialize an empty backend with your local workspace. Existing backend records
+        are always loaded unchanged.
+      </li>
+      <li>Select <strong>Connect & use API</strong>.</li>
+    </ol>
+    <p>
+      <strong>Use local</strong> signs out so you can unlock the separate local workspace. Mode
+      changes never merge or delete data.
+    </p>
+    <p>
+      On another device, use the same single email-and-password sign-in form. For a separate static
+      frontend deployment, set <code>VITE_API_URL</code> to the central backend URL ending in
+      <code>/api</code>. Add teammates in <strong>Users & roles</strong>. Local passwords are not
+      uploaded. Sessions expire in 30 minutes and are revoked on logout or account access changes.
+    </p>
+    <h3>Protect your sign-in with 2FA</h3>
+    <p>
+      Server users can open <strong>My profile → Two-factor authentication</strong>, confirm their
+      password, scan an authenticator QR code and verify its six-digit code. Save the ten recovery
+      codes before closing setup. The installation owner has the same option under
+      <strong>Account security</strong>. When enabled, both server sign-in and connecting from a
+      local workspace require the second verification step. Browser-local accounts must switch to
+      server mode for independent 2FA enforcement. Password resets and account unlocks preserve 2FA.
+    </p>
+    <h2>3. Send customer quotations</h2>
+    <p>
+      Choose <strong>Enable API services</strong> to use email while keeping local storage, or
+      connect remote storage as above. In <strong>Customer email</strong>, save your SMTP host,
+      port, TLS mode, credentials and sender details. Choose <strong>Verify SMTP</strong>; this
+      checks authentication without sending a message.
+    </p>
+    <p>
+      Open a quotation and select <strong>Email customer</strong>. Review the recipient, subject,
+      message and PDF attachment, then send. The app reports mail-server acceptance and updates the
+      quotation to Sent. It does not claim inbox delivery. Your provider must support authenticated
+      SMTP.
+    </p>
+    <h2>4. Use your own backend</h2>
+    <p>
+      Implement <code>GET /workspace</code> and <code>PUT /workspace</code>. Both require a valid
+      individual JWT session. Implement the authentication and user-management endpoints from
+      docs/API.md as well. GET returns <code>{ "workspace": ... }</code>, or <code>null</code> for
+      an empty backend, plus an <code>ETag</code>. PUT receives the whole workspace with
+      <code>If-Match</code> and must atomically reject stale writes with HTTP 412.
+    </p>
+    <p>
+      CORS must allow your exact frontend origin and the headers <code>Authorization</code>,
+      <code>Content-Type</code>, <code>If-Match</code>, and expose <code>ETag</code>. Full object
+      schemas are documented in <code>docs/API.md</code> in the source package.
+    </p>
+    <h2>Production settings</h2>
+    <p>
+      Use HTTPS, set an explicit <code>ALLOWED_ORIGINS</code> allowlist, store
+      <code>API_TOKEN</code> as a deployment secret and <code>DATA_DIR</code> on a persistent
+      volume. Bind to <code>HOST=0.0.0.0</code> only behind your HTTPS proxy. Back up the SQLite
+      database, <code>jwt.key</code>, and <code>email.key</code> together. See the included README
+      for complete setup and security boundaries.
+    </p>
+    <footer>
+      Anvil Technologies Customer Lifecycle Platform <a href="/">Return to workspace</a>
+    </footer>
+  </body>
+</html>
