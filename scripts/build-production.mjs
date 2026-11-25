@@ -38,9 +38,17 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const require = createRequire(import.meta.url);
   try {
     rmSync(path.join(root, '.vercel/output'), { recursive: true, force: true });
-    // Vite resolves frontend .env files and gives hosting variables precedence.
-    // Backend environment files are never read by this build.
-    const env = loadEnv('production', root);
+    
+    // Load environment and filter out Vercel injected system metadata 
+    // so dynamic variables like VITE_VERCEL_GIT_PREVIOUS_SHA don't trigger validation errors.
+    const rawEnv = loadEnv('production', root);
+    const env = {};
+    for (const [key, val] of Object.entries(rawEnv)) {
+      if (!key.startsWith('VITE_VERCEL_')) {
+        env[key] = val;
+      }
+    }
+
     validateRelease(env);
     execFileSync(
       process.execPath,
